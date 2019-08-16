@@ -127,7 +127,7 @@ export default class extends Vue {
   }
   private loginForm = {
     username: 'admin',
-    password: '111111'
+    password: ''
   }
   private loginRules = {
     username: [{ validator: this.validateUsername, trigger: 'blur' }],
@@ -152,7 +152,11 @@ export default class extends Vue {
 
   mounted() {
     if (this.loginForm.username === '') {
-      (this.$refs.username as Input).focus()
+      // 类型断言：<类型>值 或者 值 as 类型，用于将一个联合类型的变量指定为一个更加具体的类型；
+      // 因为 this.$refs.username 可能是多种类型，为避免报错，就需要指定一种类型；
+      // ts中，当不确定一个联合类型的变量是什么类型的时候，我们只能访问此联合类型中所有类型的共有属性或方法，否则报错，因此往往需要断言某个变量是什么类型
+      (<Input>this.$refs.username).focus()
+      // (this.$refs.username as Input).focus()
     } else if (this.loginForm.password === '') {
       (this.$refs.password as Input).focus()
     }
