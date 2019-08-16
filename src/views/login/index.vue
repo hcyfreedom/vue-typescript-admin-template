@@ -111,6 +111,8 @@ import SocialSign from './components/SocialSignin.vue'
   }
 })
 export default class extends Vue {
+  // private 修饰符；当成员被标记为 private 之后，它就不能在声明它的类的外部访问；
+  // 其他修饰符：默认 public；protected 和 private 类似，但是 protected 可以在派生类中访问
   private validateUsername = (rule: any, value: string, callback: Function) => {
     if (!isValidUsername(value)) {
       callback(new Error('Please enter the correct user name'))
