@@ -428,7 +428,10 @@ export default class extends Vue {
     left: 0;
     height: 40px;
     overflow: hidden;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
+    // x偏移量 y偏移量 阴影模糊半径 阴影颜色
+    // x偏移量 y偏移量 阴影模糊半径 阴影扩散半径(为负值则向内收，也就是缩短长度) 阴影颜色
+    // 一个黑色一个白色 并且计算阴影的位置和大小，就能出来层叠的样式
+    box-shadow: 0 1px 1px rgba(247, 5, 5, 0.932), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
   }
 
   .todo-count {

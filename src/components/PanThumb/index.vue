@@ -22,6 +22,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
   name: 'PanThumb'
 })
 export default class extends Vue {
+  // 感叹号：非空断言操作符
   @Prop({ required: true }) private image!: string
   @Prop({ default: '150px' }) private width!: string
   @Prop({ default: '150px' }) private height!: string

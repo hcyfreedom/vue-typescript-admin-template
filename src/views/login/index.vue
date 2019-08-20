@@ -103,6 +103,9 @@ import { isValidUsername } from '@/utils/validate'
 import LangSelect from '@/components/LangSelect/index.vue'
 import SocialSign from './components/SocialSignin.vue'
 
+// 使用装饰器写法写组件，依赖包 vue-class-component and vue-property-decorator
+// 不使用vue.extend定义组件，而是创建一个扩展vue的类，并使用vue类组件包中的@component decorator对其进行修饰（该组件包是从vue属性decorator包重新导出的）。
+
 @Component({
   name: 'Login',
   components: {
@@ -110,6 +113,7 @@ import SocialSign from './components/SocialSignin.vue'
     SocialSign
   }
 })
+
 export default class extends Vue {
   // private 修饰符；当成员被标记为 private 之后，它就不能在声明它的类的外部访问；
   // 其他修饰符：默认 public；protected 和 private 类似，但是 protected 可以在派生类中访问;
@@ -130,7 +134,7 @@ export default class extends Vue {
   }
   private loginForm = {
     username: 'admin',
-    password: ''
+    password: '111111'
   }
   private loginRules = {
     username: [{ validator: this.validateUsername, trigger: 'blur' }],
@@ -142,7 +146,9 @@ export default class extends Vue {
   private redirect?: string
   private otherQuery: Dictionary<string> = {}
 
+// immediate 设置了true，则该回调会在侦听开始之后被立即调用
   @Watch('$route', { immediate: true })
+  // watch route 的变化，onRouteChange 是随意起的名字
   private onRouteChange(route: Route) {
     // TODO: remove the "as Dictionary<string>" hack after v4 release for vue-router
     // See https://github.com/vuejs/vue-router/pull/2050 for details
@@ -195,7 +201,9 @@ export default class extends Vue {
     })
   }
 
+  // 为了把有效query保存下来
   private getOtherQuery(query: Dictionary<string>) {
+    // reduce的两个参数：total、currentValue；
     return Object.keys(query).reduce((acc, cur) => {
       if (cur !== 'redirect') {
         acc[cur] = query[cur]
